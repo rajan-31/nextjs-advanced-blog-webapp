@@ -1,45 +1,28 @@
-import { useUser } from '../lib/hooks'
-import Layout from '../components/layout'
+import BlogList from '@/components/blog/BlogList'
+import { findAllBlogs } from '@/lib/blog'
 
-const Home = () => {
-  const user = useUser()
+const Home = ({ blogs }) => {
+	return (
+		<>
+			<h1>Home</h1>
+			<BlogList blogs={blogs} />
+		</>
+	)
+}
 
-  return (
-    <Layout>
-      <h1>Passport.js Example</h1>
+export async function getServerSideProps({ req, res }) {
+	let blogs = []
 
-      <p>Steps to test the example:</p>
+	try {
+		blogs = await findAllBlogs()
+	} catch (error) {
+		console.log(error)
+	}
 
-      <ol>
-        <li>Click Login and enter a username and password.</li>
-        <li>
-          You'll be redirected to Home. Click on Profile, notice how your
-          session is being used through a token stored in a cookie.
-        </li>
-        <li>
-          Click Logout and try to go to Profile again. You'll get redirected to
-          Login.
-        </li>
-      </ol>
-
-      {user && (
-        <>
-          <p>Currently logged in as:</p>
-          <pre>{JSON.stringify(user, null, 2)}</pre>
-        </>
-      )}
-
-      <style jsx>{`
-        li {
-          margin-bottom: 0.5rem;
-        }
-        pre {
-          white-space: pre-wrap;
-          word-wrap: break-word;
-        }
-      `}</style>
-    </Layout>
-  )
+	return {
+		props: { blogs: JSON.parse(JSON.stringify(blogs)) },
+		// props: { blogs: blogs },
+	}
 }
 
 export default Home
