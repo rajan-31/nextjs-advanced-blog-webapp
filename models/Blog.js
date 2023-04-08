@@ -22,8 +22,10 @@ const blogSchema = new mongoose.Schema({
 	},
 	comments: [
 		{
-			commentor: mongoose.ObjectId,
+			commentorId: mongoose.ObjectId,
+			commentorName: String,
 			text: String,
+			_id: false,
 		},
 	],
 })
