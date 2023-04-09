@@ -30,4 +30,6 @@ const blogSchema = new mongoose.Schema({
 	],
 })
 
+blogSchema.index({ title: 'text', content: 'text' })
+
 export default mongoose.models.Blog || mongoose.model('Blog', blogSchema)

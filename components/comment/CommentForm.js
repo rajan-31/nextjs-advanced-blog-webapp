@@ -33,9 +33,11 @@ export default function CommentForm({ blogId, allComments, setAllComments }) {
 					onChange={e => setComment(e.target.value)}
 					required
 				/>
-				<button className='btn btn-comment' type='submit'>
-					Submit
-				</button>
+				<div className='btn-comment-wrapper'>
+					<button className='btn btn-comment' type='submit'>
+						Submit
+					</button>
+				</div>
 			</form>
 		</div>
 	)

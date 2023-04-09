@@ -16,6 +16,7 @@ const Signup = () => {
 		const body = {
 			username: e.currentTarget.username.value,
 			password: e.currentTarget.password.value,
+			fullName: e.currentTarget.fullName.value,
 		}
 
 		if (body.password !== e.currentTarget.rpassword.value) {

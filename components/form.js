@@ -6,6 +6,12 @@ const Form = ({ isLogin, errorMessage, onSubmit }) => (
 			<span>Username</span>
 			<input type='text' name='username' required defaultValue={'rajankhade31@gmail.com'} />
 		</label>
+		{!isLogin && (
+			<label>
+				<span>Full Name</span>
+				<input type='text' name='fullName' required defaultValue={'Full Name'} />
+			</label>
+		)}
 		<label>
 			<span>Password</span>
 			<input type='password' name='password' required defaultValue={'123456'} />

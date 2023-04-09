@@ -17,12 +17,15 @@ export default function Blog({ blog, user }) {
 			<h1>{blog.title}</h1>
 			<div dangerouslySetInnerHTML={{ __html: blog.content }} />
 
-			<div className='comments-section'>
-				{user?.role && (
-					<CommentForm blogId={blog._id} allComments={allComments} setAllComments={setAllComments} />
-				)}
-				<CommentsList allComments={allComments} />
-			</div>
+			{allComments.length > 0 && (
+				<div className='comments-section'>
+					<h3>Comments</h3>
+					{user?.role && (
+						<CommentForm blogId={blog._id} allComments={allComments} setAllComments={setAllComments} />
+					)}
+					<CommentsList allComments={allComments} />
+				</div>
+			)}
 		</>
 	)
 }

@@ -1,33 +1,12 @@
-:root {
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-	}
-}
-
-* {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
 	max-width: 100vw;
 	min-height: 100%;
 	overflow-x: hidden;
-}
-
-body {
-}
-
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
 }
 
 .main-container {
@@ -38,15 +17,21 @@ a {
 
 .main-container main {
 	padding-inline: 10%;
+	/* max-width: 700px; */
+	margin-inline: auto;
 	padding-block: 1rem;
 	flex-grow: 1;
 }
 .main-container header {
-	padding-inline: 10%;
+	/* padding-inline: 10%; */
+	max-width: 700px;
+	margin-inline: auto;
 	border-bottom: 1px solid black;
 }
 .main-container footer {
-	padding-inline: 10%;
+	/* padding-inline: 10%; */
+	max-width: 700px;
+	margin-inline: auto;
 	padding-block: 1rem;
 	border-top: 1px solid black;
 }
@@ -107,6 +92,10 @@ form input[type='file'] {
 	background: rgb(218, 218, 218);
 }
 
+input[type='text'] {
+	padding-inline: 0.4rem;
+}
+
 /* 
  ========== /blog/new ========== 
 */
@@ -143,7 +132,7 @@ form input[type='file'] {
 
 .blog-list .blog-item {
 	display: flex;
-	margin-block: 0.5rem;
+	margin-top: 2rem;
 }
 
 .blog-list .blog-item a {
@@ -151,11 +140,21 @@ form input[type='file'] {
 	display: inline-block;
 	flex-grow: 1;
 	padding: 0.8rem;
-	border-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	font-size: 1.5rem;
+	font-weight: 600;
 }
 
 .blog-list .blog-item a:hover {
 	background: #d393ec;
+}
+
+.blog-list .blog-content {
+	background: #f3e5f5;
+	padding: 0.8rem;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 .btn {
@@ -168,6 +167,7 @@ form input[type='file'] {
 }
 
 .blog-list .blog-item .btn-edit {
+	width: 4.3rem;
 	background: rgb(141, 141, 231);
 }
 
@@ -176,6 +176,7 @@ form input[type='file'] {
 }
 
 .blog-list .blog-item .btn-delete {
+	width: 4.3rem;
 	background: rgb(202, 116, 116);
 }
 
@@ -228,11 +229,50 @@ form input[type='file'] {
 	color: rgb(255, 255, 255);
 }
 
+.btn-comment-wrapper {
+	display: flex;
+	justify-content: flex-end;
+}
+
 .btn-comment {
 	background: rgb(1, 158, 1);
 	padding-block: 0.5rem;
+	float: right;
 }
 
 .btn-comment:hover {
 	background: green;
+}
+
+/* 
+ ========== Search Blogs ========== 
+*/
+
+.search-form {
+	display: flex;
+}
+
+.search-form input {
+	flex-grow: 1;
+}
+
+.btn-search {
+	margin-block: 1rem;
+	margin-left: 1rem;
+	background: rgb(1, 158, 1);
+	padding-block: 0.5rem;
+}
+
+.btn-search:hover {
+	background: green;
+}
+
+.btn-search-clear {
+	background: rgb(198, 201, 3);
+	padding-block: 0.2rem;
+	float: right;
+}
+
+.btn-search-clear:hover {
+	background: rgb(173, 176, 2);
 }
