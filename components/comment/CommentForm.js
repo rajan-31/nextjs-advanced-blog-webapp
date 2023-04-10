@@ -3,10 +3,13 @@ import { useState } from 'react'
 import styles from '@/styles/components/comment/CommentForm.module.css'
 
 export default function CommentForm({ blogId, allComments, setAllComments }) {
-	const [comment, setComment] = useState('Test comment ' + Math.floor(Math.random() * 1000))
+	const [comment, setComment] = useState('')
 
 	const handleSubmitComment = e => {
 		e.preventDefault()
+
+		// validation
+		// not required - handled by required attribute
 
 		const formData = new FormData()
 		formData.append('text', comment)
@@ -31,7 +34,6 @@ export default function CommentForm({ blogId, allComments, setAllComments }) {
 				<input
 					type='text'
 					placeholder='Type your comment...'
-					defaultValue={comment}
 					onChange={e => setComment(e.target.value)}
 					required
 				/>

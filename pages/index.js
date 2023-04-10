@@ -100,6 +100,9 @@ const Home = ({ blogs, user, totalBlogs, totalPages, currentPage, limit }) => {
 				show={showSearchResults}
 				showPageButtons={false}
 			/>
+			{!showSearchResults && pageButtons.length > 1 && (
+				<div className={styles.pageButtonsContainer}>{pageButtons}</div>
+			)}
 		</>
 	)
 }

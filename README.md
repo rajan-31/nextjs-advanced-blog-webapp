@@ -1,33 +1,87 @@
-# Passport.js Example
+# Advanced Blog Application
 
-This example show how to use [Passport.js](http://www.passportjs.org) with Next.js. The example features cookie based authentication with username and password.
+This repository contains source code for "Advanced Blog Application". It is build using technologies metioned below. Users can create, edit and delete their own blog posts and view blog posts of all users. Logged in users can comment on any blog post page. Admin can Delete any blog post. It takes advantage of SSR where possible to provide seamless experience for users.
 
-The example shows how to do a login, signup and logout; and to get the user info using a hook with [SWR](https://swr.vercel.app).
+### Technologies Used
 
-A database is not included. You can use any database you want and add it [in this file](lib/user.js).
+-   Next.js
+-   React.js
+-   MongoDB
+-   Tailwincss
 
-The login cookie is httpOnly, meaning it can only be accessed by the API, and it's encrypted using [@hapi/iron](https://hapi.dev/family/iron) for more security.
+Follow four steps given below to run application locally.
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-passport&project-name=with-passport&repository-name=with-passport)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+### 1. Install Requirements
 
 ```bash
-npx create-next-app --example with-passport with-passport-app
+npm install
 ```
+
+### 2. Set Environment Variables
+
+Rename `.env.sample` to `.env.local` and set all environment variables
+
+### 3. Running Locally
+
+**Development**
 
 ```bash
-yarn create next-app --example with-passport with-passport-app
+npm run build
+npm start
 ```
+
+**Production**
 
 ```bash
-pnpm create next-app --example with-passport with-passport-app
+npm run dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+view website at http://localhost:3000
+
+### 4. Create First Admin
+
+Visit http://localhost:3000/api/admin in browser
+
+---
+
+## Features
+
+### Type of Users
+
+1. Author - Edit or delete own blog posts
+2. Admin - Edit or delete any blog post
+3. Reader (Default: not logged in) - View blog posts
+
+### SSR Pages (Server Side Rendered)
+
+-   Home Page
+-   Blog Post Page
+-   Profile Page
+
+### Structure
+
+**All Users**
+
+-   Login
+-   SignUp
+
+**Reader, Admin**
+
+-   Home
+
+    -   All blog posts (with pagination)
+    -   Search blog posts (by title, content)
+    -   (Only for ADMIN) EDIT or DELETE listed or searched blog post
+
+-   Profile
+
+    -   Basic Details
+    -   EDIT or DELETE own blog post
+
+-   New Blog Post
+
+    -   Create new blog post
+
+-   Blog Post
+
+    -   Comment (If logged in)

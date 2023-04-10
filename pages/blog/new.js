@@ -11,11 +11,9 @@ const NoSSRTextEditor = dynamic(() => import('@/components/blog/NoSSRTextEditor'
 })
 
 export default function NewBlog() {
-	const [title, setTitle] = useState('Blog Title' + Math.floor(Math.random() * 10000))
+	const [title, setTitle] = useState('')
 
-	const [content, setContent] = useState(
-		`<h2><strong>Blog for ABC</strong></h2><p>Lorem ipsum dolor sit <u>amet consectetur adipisicing elit</u>. Dolorum voluptates nam itaque rem blanditiis repellat nesciunt sint <strong>dolores</strong> sed, asperiores quidem amet ad veritatis deserunt consequatur, magni rerum in quibusdam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dolorem porro aperiam quod dolores nisi, enim tempora! Tenetur, consequuntur sint mollitia exercitationem qui explicabo? Minima repudiandae est sint quibusdam iure</p><p><br></p><ul><li>item 1</li><li>item 2</li></ul><p><em>Click </em><a href="https://www.google.com" rel="noopener noreferrer" target="_blank"><em>here</em></a><em> for more info</em></p>`
-	)
+	const [content, setContent] = useState('')
 
 	const [image, setImage] = useState(null)
 
@@ -24,10 +22,12 @@ export default function NewBlog() {
 	const handleSubmit = e => {
 		e.preventDefault()
 
-		// remove this line
-		setTitle('Blog Title' + Math.floor(Math.random() * 10000))
-
 		setBlogURL('')
+
+		// validation
+		if (title.length < 3) return alert('Please use longer title.')
+		else if (content.length === 0) return alert('Please add some content.')
+
 		const formData = new FormData()
 
 		formData.append('title', title)
@@ -60,13 +60,7 @@ export default function NewBlog() {
 				<title>New Blog</title>
 			</Head>
 			<form onSubmit={handleSubmit} className={styles.form}>
-				<input
-					type='text'
-					placeholder='Title'
-					required
-					defaultValue={title}
-					onChange={e => setTitle(e.target.value)}
-				/>
+				<input type='text' placeholder='Title' required onChange={e => setTitle(e.target.value)} />
 
 				<NoSSRTextEditor value={content} onChange={setContent} />
 

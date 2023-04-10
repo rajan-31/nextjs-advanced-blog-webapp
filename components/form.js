@@ -4,22 +4,22 @@ const Form = ({ isLogin, errorMessage, onSubmit }) => (
 	<form onSubmit={onSubmit}>
 		<label>
 			<span>Username</span>
-			<input type='text' name='username' required defaultValue={'rajankhade31@gmail.com'} />
+			<input type='text' name='username' required />
 		</label>
 		{!isLogin && (
 			<label>
 				<span>Full Name</span>
-				<input type='text' name='fullName' required defaultValue={'Full Name'} />
+				<input type='text' name='fullName' required />
 			</label>
 		)}
 		<label>
 			<span>Password</span>
-			<input type='password' name='password' required defaultValue={'123456'} />
+			<input type='password' name='password' required />
 		</label>
 		{!isLogin && (
 			<label>
 				<span>Repeat password</span>
-				<input type='password' name='rpassword' required defaultValue={'123456'} />
+				<input type='password' name='rpassword' required />
 			</label>
 		)}
 

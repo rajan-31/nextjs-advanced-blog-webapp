@@ -26,6 +26,9 @@ export default function EditBlog({ blog }) {
 	const handleSubmit = e => {
 		e.preventDefault()
 
+		if (title.length < 3) return alert('Please use longer title.')
+		else if (content.length === 0) return alert('Please add some content.')
+
 		const formData = new FormData()
 
 		formData.append('title', title)
@@ -71,7 +74,7 @@ export default function EditBlog({ blog }) {
 
 				<br />
 
-				<small>!Only choose new image if you want to replace old file.</small>
+				<small>NOTE: If image already present, then it will be replaced.</small>
 
 				<input
 					type='file'
