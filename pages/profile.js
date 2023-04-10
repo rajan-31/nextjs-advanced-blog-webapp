@@ -1,34 +1,49 @@
 import BlogList from '@/components/blog/BlogList'
-import Link from 'next/link'
 import { useUser } from '../lib/hooks'
 import { getLoginSession } from '@/lib/auth'
 import { findBlogsByOwner } from '@/lib/blog'
-import { compile } from 'html-to-text'
-
-const compiledConvert = compile({ wordwrap: 130 })
+import { convertHtmlContentToText } from '@/lib/utility'
+import { useState } from 'react'
+import styles from '@/styles/pages/profile.module.css'
+import Head from 'next/head'
 
 const Profile = ({ blogs }) => {
 	const user = useUser({ redirectTo: '/login' })
 
+	const [allBlogs, setAllBlogs] = useState(blogs)
+
+	const triggerBlogDeletion = _id => {
+		setAllBlogs(allBlogs.filter(item => item._id !== _id))
+	}
+
 	return (
 		<>
-			<h1>Profile</h1>
-			{user && (
-				<>
-					<p>Your session:</p>
-					<pre>{JSON.stringify(user, null, 2)}</pre>
-				</>
-			)}
+			<Head>
+				<title>Profile</title>
+			</Head>
+			<div className={styles.profilePage}>
+				{user && (
+					<>
+						<h1>Profile</h1>
+						<div className={styles.profileDetails}>
+							<div>Username: {user.username}</div>
+							<div>Full Name: {user.fullName}</div>
+							<div>Created At: {new Date(user.createdAt).toLocaleString()}</div>
+						</div>
+					</>
+				)}
 
-			<BlogList blogs={blogs} show={true} deleteBtn={true} editBtn={true} />
-
-			<style jsx>{`
-				pre {
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					max-width: 500px;
-				}
-			`}</style>
+				<div className={styles.userBlogs}>
+					{allBlogs && <h1>Your Blogs</h1>}
+					<BlogList
+						blogs={allBlogs}
+						triggerBlogDeletion={triggerBlogDeletion}
+						show={true}
+						deleteBtn={true}
+						editBtn={true}
+					/>
+				</div>
+			</div>
 		</>
 	)
 }
@@ -43,10 +58,7 @@ export async function getServerSideProps({ req, res }) {
 			blogs = await findBlogsByOwner(user._id)
 		}
 
-		blogs = blogs.map(item => {
-			item.content = compiledConvert(item.content).slice(0, 200)
-			return item
-		})
+		blogs = convertHtmlContentToText(blogs)
 	} catch (error) {
 		console.log(error)
 	}

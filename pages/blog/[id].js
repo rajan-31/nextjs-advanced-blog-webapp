@@ -5,6 +5,9 @@ import { findBlogByID } from '@/lib/blog'
 import Image from 'next/image'
 import { useState } from 'react'
 
+import styles from '@/styles/pages/blog/[id].module.css'
+import Head from 'next/head'
+
 export default function Blog({ blog, user }) {
 	const [allComments, setAllComments] = useState(blog.comments ? blog.comments : [])
 
@@ -13,19 +16,22 @@ export default function Blog({ blog, user }) {
 
 	return (
 		<>
-			{blog.image && <Image src={imageSrc(blog.image)} width={300} height={300} alt='Blog Image'></Image>}
-			<h1>{blog.title}</h1>
-			<div dangerouslySetInnerHTML={{ __html: blog.content }} />
+			<Head>
+				<title>{blog.title}</title>
+			</Head>
+			<div className={styles.blogDetails}>
+				<h1>{blog.title}</h1>
+				{blog.image && <Image src={imageSrc(blog.image)} width={300} height={300} alt='Blog Image'></Image>}
+				<div dangerouslySetInnerHTML={{ __html: blog.content }} className={styles.content} />
 
-			{allComments.length > 0 && (
-				<div className='comments-section'>
-					<h3>Comments</h3>
+				<div className={styles['comments-section']}>
+					<h3>Comments ({allComments.length})</h3>
 					{user?.role && (
 						<CommentForm blogId={blog._id} allComments={allComments} setAllComments={setAllComments} />
 					)}
 					<CommentsList allComments={allComments} />
 				</div>
-			)}
+			</div>
 		</>
 	)
 }

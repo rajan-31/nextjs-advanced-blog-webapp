@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import styles from '@/styles/components/SearchForm.module.css'
 
 export default function SearchForm({ setShowSearchResults, setSearchResult }) {
 	const [searchText, setSearchText] = useState('ABC')
@@ -31,7 +32,7 @@ export default function SearchForm({ setShowSearchResults, setSearchResult }) {
 
 	return (
 		<div>
-			<form className='search-form' onSubmit={handleSearchSubmit}>
+			<form className={styles['search-form']} onSubmit={handleSearchSubmit}>
 				<input
 					type='text'
 					placeholder='Search blogs...'
@@ -39,7 +40,7 @@ export default function SearchForm({ setShowSearchResults, setSearchResult }) {
 					defaultValue={searchText}
 					onChange={e => setSearchText(e.target.value)}
 				/>
-				<button type='submit' className='btn btn-search'>
+				<button type='submit' className={styles['btn-search']}>
 					Search
 				</button>
 			</form>

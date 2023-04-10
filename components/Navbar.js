@@ -1,11 +1,12 @@
 import Link from 'next/link'
-import { useUser } from '../lib/hooks'
+import { useUser } from '@/lib/hooks'
+import styles from '@/styles/components/Navbar.module.css'
 
 const Navbar = () => {
 	const user = useUser()
 
 	return (
-		<header>
+		<header className={styles['nav-container']}>
 			<nav>
 				<ul>
 					<li>

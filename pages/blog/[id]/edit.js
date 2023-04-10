@@ -4,6 +4,10 @@ import dynamic from 'next/dynamic'
 import { findBlogByID } from '@/lib/blog'
 import Image from 'next/image'
 
+import styles from '@/styles/pages/blog/new.module.css'
+import { blogImg } from '@/styles/pages/blog/[id].module.css'
+import Head from 'next/head'
+
 const NoSSRTextEditor = dynamic(() => import('@/components/blog/NoSSRTextEditor'), {
 	ssr: false,
 	loading: () => <div>Loading ...</div>,
@@ -48,8 +52,13 @@ export default function EditBlog({ blog }) {
 
 	return (
 		<>
-			{blog.image && <Image src={imageSrc(blog.image)} width={300} height={300} alt='Blog Image'></Image>}
-			<form onSubmit={handleSubmit}>
+			<Head>
+				<title>Edit Blog</title>
+			</Head>
+			{blog.image && (
+				<Image src={imageSrc(blog.image)} width={300} height={300} alt='Blog Image' className={blogImg}></Image>
+			)}
+			<form onSubmit={handleSubmit} className={styles.form}>
 				<input
 					type='text'
 					placeholder='Title'
@@ -74,7 +83,7 @@ export default function EditBlog({ blog }) {
 			</form>
 
 			{blogURL && (
-				<div className='blog-link'>
+				<div className={styles['blog-link']}>
 					To view updated blog click <Link href={blogURL}>here</Link> or copy following link{' '}
 					<span>{window.location.host + blogURL}</span>
 				</div>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Router from 'next/router'
 import { useUser } from '../lib/hooks'
 import Form from '../components/form'
+import Head from 'next/head'
 
 const Login = () => {
 	useUser({ redirectTo: '/', redirectIfFound: true })
@@ -37,6 +38,9 @@ const Login = () => {
 
 	return (
 		<>
+			<Head>
+				<title>Login</title>
+			</Head>
 			<div className='login'>
 				<Form isLogin errorMessage={errorMsg} onSubmit={handleSubmit} />
 			</div>

@@ -1,0 +1,5 @@
+.comments-list {
+	margin-block: 2rem;
+	max-height: 500px;
+	overflow-y: auto;
+}

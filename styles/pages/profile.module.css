@@ -1,0 +1,14 @@
+.profilePage h1 {
+	@apply text-4xl;
+}
+
+.profileDetails {
+	@apply mt-5;
+}
+.profileDetails div {
+	@apply text-lg;
+}
+
+.userBlogs {
+	@apply mt-10;
+}

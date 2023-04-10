@@ -1,0 +1,17 @@
+.search-form {
+	@apply my-4 max-w-full flex flex-wrap gap-4;
+}
+
+.search-form input {
+	@apply border border-2 rounded-md px-2 grow h-10;
+}
+
+.btn-search {
+	background: rgb(1, 158, 1);
+	padding-block: 0.5rem;
+	@apply rounded-full px-3 ml-auto;
+}
+
+.btn-search:hover {
+	background: green;
+}

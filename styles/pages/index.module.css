@@ -1,0 +1,30 @@
+.sectionHeaderContainer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.sectionHeader {
+	@apply text-3xl;
+}
+
+.btn-search-clear {
+	background: rgb(198, 201, 3);
+	padding-block: 0.2rem;
+	@apply rounded-md px-3;
+}
+
+.btn-search-clear:hover {
+	background: rgb(173, 176, 2);
+}
+
+.pageButtonsContainer {
+	@apply px-4 py-3 my-4 bg-orange-100 rounded-md flex flex-wrap;
+}
+
+.pageButtonsContainer .pageButton {
+	@apply inline-block min-w-[38px] text-center bg-amber-300 text-black px-2 py-1 mx-2 my-1 border border-2 border-transparent rounded-full;
+}
+
+.pageButtonsContainer .currentPageButton {
+	@apply border border-2 border-black border-spacing-0;
+}

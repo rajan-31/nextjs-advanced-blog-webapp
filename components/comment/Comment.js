@@ -1,8 +1,10 @@
+import styles from '@/styles/components/comment/Comment.module.css'
+
 export default function Comment({ commentorName, text }) {
 	return (
-		<div className='comment'>
-			<div className='commentatorName'>{commentorName}</div>
-			<div className='commentText'>{text}</div>
+		<div className={styles.comment}>
+			<div className={styles.commentatorName}>{commentorName}</div>
+			<div className={styles.commentText}>{text}</div>
 		</div>
 	)
 }

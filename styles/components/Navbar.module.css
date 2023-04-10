@@ -1,0 +1,28 @@
+.nav-container {
+	max-width: 700px;
+	margin-inline: auto;
+	border-bottom: 1px solid black;
+}
+
+.nav-container ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.nav-container ul li {
+	display: inline-block;
+	padding: 1rem;
+}
+
+.nav-container ul li a {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-decoration-color: rgb(99, 205, 81);
+}
+
+.nav-container ul li a:hover {
+	text-decoration: underline;
+	background: rgb(99, 205, 81);
+	color: #fff;
+}

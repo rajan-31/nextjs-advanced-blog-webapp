@@ -1,0 +1,62 @@
+.blog-item {
+	display: flex;
+	margin-top: 2rem;
+}
+
+.blog-item a {
+	background: #d7b0e7;
+	display: inline-block;
+	flex-grow: 1;
+	padding: 0.8rem;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.blog-item a:hover {
+	background: #d393ec;
+}
+
+.blog-content {
+	background: #f3e5f5;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	padding: 0.8rem;
+	@apply overflow-hidden;
+}
+
+.blog-content p {
+	@apply line-clamp-3;
+}
+
+.blog-item .btn {
+	background: none;
+	border: none;
+	padding-inline: 0.8rem;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 0.9rem;
+}
+
+.blog-item .btn-edit {
+	width: 4.3rem;
+	background: rgb(141, 141, 231);
+}
+
+.blog-item .btn-edit:hover {
+	background: rgb(100, 100, 229);
+}
+
+.blog-item .btn-delete {
+	width: 4.3rem;
+	background: rgb(202, 116, 116);
+}
+
+.blog-item .btn-delete:hover {
+	background: rgb(194, 86, 86);
+}
+
+.blog-item.hidden {
+	display: none;
+}

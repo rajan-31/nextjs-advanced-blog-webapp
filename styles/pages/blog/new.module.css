@@ -1,0 +1,44 @@
+.form input,
+.form textarea {
+	display: block;
+	width: 100%;
+	margin-block: 1rem;
+	min-height: 2rem;
+	font-size: 1rem;
+
+	@apply border border-2 h-10 rounded-md;
+}
+
+.form input[type='file'] {
+	background: rgb(218, 218, 218);
+}
+
+.form input[type='text'] {
+	padding-inline: 0.4rem;
+}
+
+.form button {
+	@apply px-3 py-2 block ml-auto rounded-md bg-emerald-500;
+}
+
+.blog-link {
+	background: rgb(185 233 185);
+	padding: 0.8rem;
+	margin-block: 1rem;
+	border-radius: 5px;
+}
+
+.blog-link a {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-decoration-color: rgb(214, 157, 66);
+}
+
+.blog-link a:hover {
+	color: #fff;
+	background: rgb(214, 157, 66);
+}
+
+.blog-link span {
+	color: #7b1fa2;
+}

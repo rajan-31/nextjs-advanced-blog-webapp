@@ -1,0 +1,29 @@
+.blogDetails img,
+.blogImg {
+	@apply mx-auto;
+}
+
+.blogDetails h1 {
+	@apply text-4xl text-center mb-5;
+}
+
+.blogDetails .content {
+	@apply bg-sky-100 my-5 px-3 py-4;
+}
+
+.content ul li {
+	@apply list-disc list-inside;
+}
+
+.content a {
+	@apply underline underline-offset-2 decoration-cyan-500 decoration-2 hover:bg-cyan-500;
+}
+
+.comments-section {
+	margin-block: 3rem;
+	padding-block: 1rem;
+	padding-inline: 1rem;
+	background: #aba1af;
+	border: 1px solid black;
+	border-radius: 5px;
+}

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import styles from '@/styles/components/comment/CommentForm.module.css'
+
 export default function CommentForm({ blogId, allComments, setAllComments }) {
 	const [comment, setComment] = useState('Test comment ' + Math.floor(Math.random() * 1000))
 
@@ -25,7 +27,7 @@ export default function CommentForm({ blogId, allComments, setAllComments }) {
 
 	return (
 		<div>
-			<form onSubmit={handleSubmitComment}>
+			<form className={styles.commentForm} onSubmit={handleSubmitComment}>
 				<input
 					type='text'
 					placeholder='Type your comment...'
@@ -33,8 +35,8 @@ export default function CommentForm({ blogId, allComments, setAllComments }) {
 					onChange={e => setComment(e.target.value)}
 					required
 				/>
-				<div className='btn-comment-wrapper'>
-					<button className='btn btn-comment' type='submit'>
+				<div className={styles['btn-comment-wrapper']}>
+					<button className={styles['btn-comment']} type='submit'>
 						Submit
 					</button>
 				</div>

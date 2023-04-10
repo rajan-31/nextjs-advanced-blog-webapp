@@ -2,6 +2,9 @@ import Link from 'next/link'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 
+import styles from '@/styles/pages/blog/new.module.css'
+import Head from 'next/head'
+
 const NoSSRTextEditor = dynamic(() => import('@/components/blog/NoSSRTextEditor'), {
 	ssr: false,
 	loading: () => <div>Loading ...</div>,
@@ -21,6 +24,10 @@ export default function NewBlog() {
 	const handleSubmit = e => {
 		e.preventDefault()
 
+		// remove this line
+		setTitle('Blog Title' + Math.floor(Math.random() * 10000))
+
+		setBlogURL('')
 		const formData = new FormData()
 
 		formData.append('title', title)
@@ -31,10 +38,13 @@ export default function NewBlog() {
 			method: 'POST',
 			body: formData,
 		})
-			.then(response => response.json())
+			.then(response => {
+				if (response.status === 200) return response.json()
+				else if (response.status === 400) {
+					alert('Duplicate blog title')
+				}
+			})
 			.then(data => {
-				setTitle('Blog Title' + Math.floor(Math.random() * 10000))
-				console.log(data)
 				if (data) {
 					setBlogURL(`/blog/${data._id}`)
 				}
@@ -46,7 +56,10 @@ export default function NewBlog() {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
+			<Head>
+				<title>New Blog</title>
+			</Head>
+			<form onSubmit={handleSubmit} className={styles.form}>
 				<input
 					type='text'
 					placeholder='Title'
@@ -63,11 +76,13 @@ export default function NewBlog() {
 					accept='.jpg, .jpeg, .png'
 					onChange={e => setImage(e.target.files[0])}
 				></input>
-				<button type='submit'>Submit</button>
+				<div>
+					<button type='submit'>Submit</button>
+				</div>
 			</form>
 
 			{blogURL && (
-				<div className='blog-link'>
+				<div className={styles['blog-link']}>
 					To view newly created blog click <Link href={blogURL}>here</Link> or copy following link{' '}
 					<span>{window.location.host + blogURL}</span>
 				</div>

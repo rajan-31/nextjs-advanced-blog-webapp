@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
+import styles from '@/styles/components/blog/BlogListItem.module.css'
+
 export default function BlogListItem({ blogData, triggerBlogDeletion, deleteBtn, editBtn }) {
 	const router = useRouter()
 	const handleEdit = e => {
@@ -25,20 +27,22 @@ export default function BlogListItem({ blogData, triggerBlogDeletion, deleteBtn,
 
 	return (
 		<>
-			<div className='blog-item'>
+			<div className={styles['blog-item']}>
 				<Link href={'/blog/' + blogData._id}>{blogData.title}</Link>
 				{editBtn && (
-					<button className='btn btn-edit' onClick={handleEdit}>
+					<button className={`${styles['btn']} ${styles['btn-edit']}`} onClick={handleEdit}>
 						Edit
 					</button>
 				)}
 				{deleteBtn && (
-					<button className='btn btn-delete' onClick={handleDelete}>
+					<button className={`${styles['btn']} ${styles['btn-delete']}`} onClick={handleDelete}>
 						Delete
 					</button>
 				)}
 			</div>
-			<div className='blog-content'>{blogData.content}</div>
+			<div className={styles['blog-content']}>
+				<p>{blogData.content}</p>
+			</div>
 		</>
 	)
 }
