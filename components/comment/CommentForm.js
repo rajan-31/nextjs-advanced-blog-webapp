@@ -24,6 +24,7 @@ export default function CommentForm({ blogId, allComments, setAllComments }) {
 			})
 			.then(data => {
 				setAllComments([...allComments, data.comment])
+				setComment('')
 			})
 			.catch(err => console.log(err))
 	}
@@ -35,6 +36,7 @@ export default function CommentForm({ blogId, allComments, setAllComments }) {
 					type='text'
 					placeholder='Type your comment...'
 					onChange={e => setComment(e.target.value)}
+					value={comment}
 					required
 				/>
 				<div className={styles['btn-comment-wrapper']}>

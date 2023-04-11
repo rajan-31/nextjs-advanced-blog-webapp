@@ -23,6 +23,7 @@ export default function SearchForm({ setShowSearchResults, setSearchResult }) {
 			})
 			.then(data => {
 				setSearchResult(data)
+				setSearchText('')
 			})
 			.catch(err => {
 				console.log(err)
@@ -37,6 +38,7 @@ export default function SearchForm({ setShowSearchResults, setSearchResult }) {
 					type='text'
 					placeholder='Search blogs...'
 					required
+					value={searchText}
 					onChange={e => setSearchText(e.target.value)}
 				/>
 				<button type='submit' className={styles['btn-search']}>

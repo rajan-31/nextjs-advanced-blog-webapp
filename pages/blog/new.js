@@ -26,7 +26,7 @@ export default function NewBlog() {
 
 		// validation
 		if (title.length < 3) return alert('Please use longer title.')
-		else if (content.length === 0) return alert('Please add some content.')
+		else if (content.length < 10) return alert('Please add some more content.')
 
 		const formData = new FormData()
 
@@ -47,6 +47,10 @@ export default function NewBlog() {
 			.then(data => {
 				if (data) {
 					setBlogURL(`/blog/${data._id}`)
+					setTitle('')
+					setContent('')
+					setImage('')
+					e.target.reset()
 				}
 			})
 			.catch(err => {
@@ -60,7 +64,13 @@ export default function NewBlog() {
 				<title>New Blog</title>
 			</Head>
 			<form onSubmit={handleSubmit} className={styles.form}>
-				<input type='text' placeholder='Title' required onChange={e => setTitle(e.target.value)} />
+				<input
+					type='text'
+					placeholder='Title'
+					required
+					value={title}
+					onChange={e => setTitle(e.target.value)}
+				/>
 
 				<NoSSRTextEditor value={content} onChange={setContent} />
 
